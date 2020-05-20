@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>3. DN :: OIS 2019/2020</title>
+  <link href="knjiznice/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {padding-top: 70px;}
+  </style>
+  <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
+  <script src="knjiznice/js/bootstrap.min.js"></script>
+  <script src="knjiznice/js/koda.js"></script>
+</head>
+<body>
+
+  <!-- ZAČETEK: Menujska vrstica na vrhu spletne strani -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menujska-vrstica">
+          <span class="sr-only">Prikaži menu</span>
+          <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+        </button>
+        <!-- ZAČETEK: Ime vaše aplikacije -->
+        <a class="navbar-brand" href="index.html" style="color: white !important">CovidHelper</a>
+        <!-- KONEC: Ime vaše aplikacije -->
+      </div>
+      <div class="collapse navbar-collapse" id="menujska-vrstica">
+        <ul class="nav navbar-nav">
+          <li><a href="opis.html" style="color: white !important">Opis ideje</a></li>
+          <li><a href="nacrt.html" style="color: white !important">Načrt informacijske rešitve</a></li>
+          <li><a href="bolnisnice.html" style="color: white !important">Bližnje bolnišnice</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- KONEC: Menujska vrstica na vrhu spletne strani -->
+
+  <!-- ZAČETEK: Opis delovanja aplikacije -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Opis ideje, ki jo aplikacija podpira</h3>
+          </div>
+          <div class="panel-body">
+            <!-- ZAČETEK: Opis ideje, ki jo aplikacija podpira -->
+            <p>Aplikacija podpira pregled osnovnih vitalnih znakov pacientov iz Teaching API baze. Te na inovativen način prikaže in izriše tudi graf,
+              na katerem je vidno odstopanje posamenega znaka od povprečja. Vsebuje tudi prikaz aktualnega stanja COVID-19 v Sloveniji, kar jo naredi uporabno 
+              za vsakega uporabnika, ki ga zanimajo trenutni podatki o epidemiji.
+            </p>
+            <!-- KONEC: Opis ideje, ki jo aplikacija podpira -->
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Uporabljeni zunanji viri podatkov</h3>
+          </div>
+          <div class="panel-body">
+            <!-- ZAČETEK: Uporabljeni zunanji viri podatkov -->
+            <p><a href="https://api.sledilnik.org/api/stats">Covid Sledilnik API </a>v JSON formatu, iz katerega podatke z API klicem vključim v HTML.<br>
+            <a href="https://teaching.lavbic.net/api/OIS/baza/filippolner/podatki">Teachin API baza pacientov</a>, iz katere pridobim podatke za 
+          prikaz vitalnih znakov bolnikov. V njo sem tudi naložil podatke o vzorčnih pacientih.<br></p>
+            <!-- KONEC: Uporabljeni zunanji viri podatkov -->
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Master/detail načrtovalski vzorec</h3>
+          </div>
+          <div class="panel-body">
+            <!-- ZAČETEK: Master/detail načrtovalski vzorec -->
+            <p>Master/detail načrtovalski vzorec v moji aplikaciji predstavlja pregled pacientovih vitalnih znakov. Ime, priimek, datum rojstva in
+              EhrID prikaže klasično s textom, ostali podatki pa se posredujejo v CanvasJS grafe, kateri vsak vitalni znak prikaže z horizontalnim
+              stolpičnim grafom. Vse podatke naenkrat prikažem tudi v Chart.js radarskem grafu.
+            </p>
+            <!-- KONEC: Master/detail načrtovalski vzorec -->
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Uporabljena tehnika za vizualizacijo podatkov</h3>
+          </div>
+          <div class="panel-body">
+            <!-- ZAČETEK: Uporabljeni zunanji viri podatkov -->
+            <p>Kot že omenjeno, sem za vizualizacijo podatkov uporabil dve predlogi, CanvasJS in Chart.js. Te dve tehniki sem izbral,
+              ker ponujata širok nabor grafov in vsebujeta ogromno možnosti za prilagoditve, kar mi je pomagalo, da sem grafe prilagodil temi aplikacije.
+            </p>
+            <!-- KONEC: Uporabljeni zunanji viri podatkov -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- KONEC: Opis delovanja aplikacije -->
+
+</body>
+</html>

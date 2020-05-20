@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>3. DN :: OIS 2019/2020</title>
+  <link href="knjiznice/css/bootstrap.min.css" rel="stylesheet">
+  <link href="knjiznice/css/leaflet.css" rel="stylesheet"/>
+  <link href="knjiznice/css/leaflet-routing-machine.css" rel="stylesheet"/>
+  <link href="knjiznice/css/stili.css" rel="stylesheet"/>
+  <style>
+    body {padding-top: 70px;}
+  </style>
+  <script src="knjiznice/js/vitalniznaki.js"></script>
+  <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
+  <script src="knjiznice/js/bootstrap.min.js"></script>
+  <script src="knjiznice/js/koda.js"></script>
+</head>
+<body>
+
+  <!-- ZAČETEK: Menujska vrstica na vrhu spletne strani -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background-color: #940404 !important;">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menujska-vrstica">
+          <span class="sr-only">Prikaži menu</span>
+          <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+        </button>
+        <!-- ZAČETEK: Ime vaše aplikacije -->
+        <a class="navbar-brand" href="index.html" style="color: white !important">CovidHelper</a>
+        <!-- KONEC: Ime vaše aplikacije -->
+      </div>
+      <div class="collapse navbar-collapse" id="menujska-vrstica">
+        <ul class="nav navbar-nav">
+          <li><a href="opis.html" style="color: white !important">Opis ideje</a></li>
+          <li><a href="nacrt.html" style="color: white !important">Načrt informacijske rešitve</a></li>
+          <li><a href="bolnisnice.html" style="color: white !important">Bližnje bolnišnice</a></li>
+          <li><a href="#" style="color: white !important" onclick="generirajPodatke(1); generirajPodatke(2); generirajPodatke(3); posodobljeno()">Generiranje podatkov</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- KONEC: Menujska vrstica na vrhu spletne strani -->
+
+  <!-- ZAČETEK: Vsebina aplikacije -->
+  <div class="tabela" id="okolitabele" style="width: 800px; height: 290px; background-color: lightgray;" position: center><br>
+   <div class="tabelaprva"><img src="/knjiznice/css/starwarsmedical.png" width="39" height="39" class="img1"> 
+    &nbsp; Izberite vzorčnega pacienta ali pacienta iz podatkovne baze.
+      <form id="form">
+        <input id="in" class="srch" type="text" placeholder="Vpišite EhrID" name="search"/><button type="button" value="submit" onclick="preisciBazo()"><img src="/knjiznice/css/searchicon.png" id="ikona" width="20" height="20" class="img1"></button>
+      </form>
+      <script src="knjiznice/js/api.js"></script>
+  </div><br>
+  <select id="dropdown" onchange="ajmo()">
+    <option value="" disabled selected hidden>Izberite vzorčnega pacienta</option>
+    <option value="1">Anej Senekovič - športnik</option>
+    <option value="2">Mirko Mirnik - obolel s pljučnico</option>
+    <option value="3">Marko Lešnik - mlad, poškodovan</option>
+  </select><br><br>
+  <div id="idjek"><div id="vraper">EhrID</div><div id="ajsajd" style="display: inline-flex !important;"></div></div>
+  <div class="wrapper">
+    <div class="card1" style="float: left; padding-top: 20px">IME
+      <div id="ime"></div>
+    </div><div class="card1" style="float: left; padding-top: 20px">PRIIMEK<div id="priimek"></div></div>
+    <div class="card1" style="float: left; padding-top: 20px;">DATUM ROJSTVA<br><div id="datumrojstva"></div>
+    </div>
+</div>
+<div id="okolicatabele" style="width: 800px; height: 1200px; background-color: lightgray; margin-top: -50px; border-radius: 10px;" position: center><br>
+  <div class="starost">Telesna višina (v cm):</div>
+  <div id="chartContainer1" class="chart" style="height: 100px; width: 70%;"></div><br>
+  <div class="starost">Telesna teža (v kg):</div>
+  <div id="chartContainer2" class="chart" style="height: 100px; width: 70%;"></div><br>
+  <div class="starost">Temperatura - zadnje merjenje (v °C):</div>
+  <div id="chartContainer3" class="chart" style="height: 100px; width: 70%;"></div><br>
+  <div class="starost">Sistolični krvni tlak:</div>
+  <div id="chartContainer4" class="chart" style="height: 100px; width: 70%;"></div><br>
+  <div class="starost">Diastolični krvni tlak:</div>
+  <div id="chartContainer5" class="chart" style="height: 100px; width: 70%;"></div>
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script><br>
+  <script src="knjiznice/js/chartContainer1.js"></script><br>
+  <canvas id="povprecje"></canvas>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+  <script src="knjiznice/js/povprecje.js"></script>
+</div><br>
+<div id="okolicatabele" style="width: 800px; height: 500px; background-color: lightgray; margin: auto; border-radius: 10px;" position: center><br>
+  <div class="starost" style="width: 100%; text-align: center;">Stanje COVID-19 v Sloveniji:</div>
+  <div class="wrapper">
+    <div class="card" style="display: inline-block;">POZITIVNI TESTI<br>DANES
+      <div id="testi"></div>
+    </div><div class="card" style="float: left; padding-top: 20px">PREBOLELI<div id="ozdraveli"></div></div>
+    <div class="card" style="float: left; padding-top: 20px;">SKUPNO OKUŽENIH<br><div id="okuzenisk"></div></div><br><br><br><br>
+    <div class="wrapper">
+      <div class="card" style="float: left; padding-top: 20px">KRITIČNI
+        <div id="kriticni"></div>
+      </div><div class="card" style="float: left; padding-top: 20px">UMRLI<div id="umrli"></div></div>
+      <div class="card" style="float: left; padding-top: 20px;">UMRLI DANES<br><div id="umrlidanes"></div></div>
+</div>
+  <div id="datum"></div>
+  </div>
+</div>
+  <!-- KONEC: Vsebina aplikacije -->
+</body>
+</html>
